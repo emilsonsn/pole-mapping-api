@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * @property int $user_id
@@ -29,11 +30,12 @@ class Maintenance extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function photoPath(): Attribute
+    public function getPhotoPathAttribute($value)
     {
-        return Attribute::make(
-            get: fn ($value) => $value ? asset('storage/' . $value) : null,
-            set: fn ($value) => $value // grava no banco como veio
-        );
+        if (! $value) {
+            return null;
+        }
+
+        return asset('storage/' . $value);
     }
 }

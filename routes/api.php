@@ -11,6 +11,8 @@ use App\Http\Controllers\Api\TransformerController;
 use App\Http\Controllers\Api\TypeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\DashboardController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +34,10 @@ Route::middleware(['jwt'])->group(function () {
 
     Route::prefix('user')->group(function(){
         Route::get('me', [AuthController::class, 'me']);
+    });
+
+    Route::prefix('dashboard')->group(function () {
+       Route::get('/cards', [DashboardController::class, 'cards'])->name('dashboard.cards');
     });
 
     Route::prefix('types')->group(function () {
@@ -133,6 +139,7 @@ Route::middleware(['jwt'])->group(function () {
      */
     Route::prefix('maintenances')->group(function () {
         Route::get('/', [MaintenanceController::class, 'index'])->name('maintenances.index');
+        Route::get('/list', [MaintenanceController::class, 'list'])->name('maintenances.list');
         Route::post('/', [MaintenanceController::class, 'store'])->name('maintenances.store');
         Route::get('/{maintenance}', [MaintenanceController::class, 'show'])->name('maintenances.show');
         Route::put('/{maintenance}', [MaintenanceController::class, 'update'])->name('maintenances.update');
