@@ -36,8 +36,8 @@ class Maintenance extends Model
             return null;
         }
 
-        $storagePath = storage_path('app/public_html/' . $value);
-        $publicPath  = public_path('storage/' . $value);
+        $storagePath = storage_path('app/public/' . $value);
+        $publicPath  = base_path('public_html/storage/' . $value);
 
         if (file_exists($storagePath)) {
             if (! file_exists(dirname($publicPath))) {
