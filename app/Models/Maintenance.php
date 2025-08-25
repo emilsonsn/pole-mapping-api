@@ -30,12 +30,27 @@ class Maintenance extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function getPhotoPathAttribute($value)
+    public function getPhotoPathAttribute($value): ?string
     {
         if (! $value) {
             return null;
         }
 
-        return asset('storage/' . $value);
+        $storagePath = storage_path('app/public/' . $value);
+        $publicPath  = public_path('storage/' . $value);
+
+        if (file_exists($storagePath)) {
+            if (! file_exists(dirname($publicPath))) {
+                mkdir(dirname($publicPath), 0755, true);
+            }
+
+            if (! file_exists($publicPath)) {
+                copy($storagePath, $publicPath);
+            }
+
+            return asset('storage/' . $value);
+        }
+
+        return null;
     }
 }
