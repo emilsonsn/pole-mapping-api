@@ -21,6 +21,7 @@ class Pole extends Model
         'city',
         'type_id',
         'height',
+        'remote_management_relay',
         'paving_id',
         'position_id',
         'network_type_id',

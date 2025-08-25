@@ -31,6 +31,7 @@ class PoleRequest extends FormRequest
             'city' => 'required|string',
             'type_id' => 'required|exists:types,id',
             'height' => 'required|numeric',
+            'remote_management_relay' => 'nullable|string',
             'paving_id' => 'required|exists:pavings,id',
             'position_id' => 'required|exists:positions,id',
             'network_type_id' => 'required|exists:network_types,id',
