@@ -9,7 +9,6 @@ use App\Http\Controllers\Api\PoleController;
 use App\Http\Controllers\Api\PositionController;
 use App\Http\Controllers\Api\TransformerController;
 use App\Http\Controllers\Api\TypeController;
-use App\Http\Controllers\FileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\DashboardController;
