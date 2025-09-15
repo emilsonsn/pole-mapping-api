@@ -134,11 +134,6 @@ class PoleResource extends Resource
                     ->sortable()
                     ->searchable(),
 
-                Tables\Columns\TextColumn::make('qrcode')
-                    ->label('QR Code')
-                    ->searchable()
-                    ->copyable(),
-
                 Tables\Columns\TextColumn::make('latitude')
                     ->label('Latitude')
                     ->sortable(),

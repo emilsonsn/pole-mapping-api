@@ -23,11 +23,17 @@ class Maintenance extends Model
         'neighborhood',
         'city',
         'photo_path',
+        'pole_id'
     ];
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function pole(): BelongsTo
+    {
+        return $this->belongsTo(Pole::class);
     }
 
     public function getPhotoPathAttribute($value): ?string

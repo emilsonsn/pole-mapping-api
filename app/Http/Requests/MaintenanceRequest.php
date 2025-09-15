@@ -28,6 +28,7 @@ class MaintenanceRequest extends FormRequest
             'neighborhood' => 'required|string',
             'city' => 'required|string',
             'photo' => ['required','image','mimes:jpg,jpeg,png','max:5120'],
+            'pole_id' => 'required|integer',
         ];
     }
 }

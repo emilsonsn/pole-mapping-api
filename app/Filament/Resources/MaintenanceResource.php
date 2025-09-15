@@ -26,6 +26,11 @@ class MaintenanceResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Select::make('user_id')->label('Usuário')->relationship('user', 'name')->searchable()->required(),
+                Forms\Components\Select::make('pole_id')
+                    ->label('Poste')
+                    ->relationship('pole', 'address')
+                    ->searchable()
+                    ->required(),
                 Forms\Components\Fieldset::make('Localização')->schema([
                     Forms\Components\TextInput::make('latitude')->label('Latitude')->numeric(),
                     Forms\Components\TextInput::make('longitude')->label('Longitude')->numeric(),
@@ -42,6 +47,10 @@ class MaintenanceResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('user.name')->label('Usuário')->sortable()->searchable(),
+                Tables\Columns\TextColumn::make('pole.address')
+                    ->label('Poste')
+                    ->sortable()
+                    ->searchable(),
                 ImageColumn::make('photo_path')->label('Foto')->getStateUsing(fn (Maintenance $r) => $r->photo_path)->circular(),
                 Tables\Columns\TextColumn::make('city')->label('Cidade')->searchable(),
                 Tables\Columns\TextColumn::make('neighborhood')->label('Bairro')->searchable(),
