@@ -2,7 +2,7 @@
     <a href="{{ $getRecord()->photo_path }}"
        target="_blank"
        onclick="event.preventDefault(); openImageModal('{{ $getRecord()->photo_path }}')">
-        <img src="{{ asset('storage/' . $getRecord()->photo_path) }}"
+        <img src="{{ $getRecord()->photo_path }}"
              alt="Foto da manutenção"
              style="max-height:200px; border-radius:8px; cursor:pointer;">
     </a>
