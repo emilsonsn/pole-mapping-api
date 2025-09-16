@@ -29,6 +29,7 @@ class ApplyFooterToMaintenances extends Command
 
         foreach ($maintenances as $maintenance) {
             $filePath = storage_path('app/public/' . $maintenance->getRawOriginal('photo_path'));
+            $publicPath = base_path('public_html/storage/' . $maintenance->getRawOriginal('photo_path'));
 
             if (! file_exists($filePath)) {
                 $this->warn("Arquivo não encontrado: {$filePath}");
@@ -40,8 +41,18 @@ class ApplyFooterToMaintenances extends Command
             $service->setMaintenance($maintenance);
             $service->addFooterToImage($filePath, $maintenance->toArray());
 
+            // garante que a pasta existe em public_html
+            if (! file_exists(dirname($publicPath))) {
+                mkdir(dirname($publicPath), 0755, true);
+            }
+
+            // copia a versão processada para o public_html
+            copy($filePath, $publicPath);
+
             $this->info("Rodapé aplicado em: {$filePath}");
+            $this->info("Arquivo atualizado em: {$publicPath}");
         }
+
 
         $this->info('Processo concluído.');
     }
