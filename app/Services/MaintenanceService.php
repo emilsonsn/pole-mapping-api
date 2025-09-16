@@ -62,8 +62,8 @@ class MaintenanceService
 
         $imgHeight = $img->height();
 
-        $fontSize = max(16, intval($imgHeight * 0.02)); // 2% da altura, mínimo 16px
-        $offsetY  = max(100, intval($imgHeight * 0.20)); // 20% da altura como margem de baixo
+        $fontSize = max(16, intval($imgHeight * 0.02));
+        $offsetY  = max(100, intval($imgHeight * 0.10));
 
         $img->text($footerText, 20, $imgHeight - $offsetY, function ($font) use ($fontSize) {
             $fontPath = collect(glob(public_path('fonts/arial/*.{ttf,TTF}'), GLOB_BRACE))->first();
