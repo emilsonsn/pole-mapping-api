@@ -38,7 +38,8 @@ class MaintenanceResource extends Resource
                     Forms\Components\TextInput::make('neighborhood')->label('Bairro')->maxLength(255),
                     Forms\Components\TextInput::make('city')->label('Cidade')->maxLength(255),
                 ])->columns(5),
-                Forms\Components\FileUpload::make('photo_path')->label('Foto')->image()->directory('maintenances')->disk('public')->visibility('public')->imageEditor()->downloadable()->openable(),
+                Forms\Components\View::make('forms.components.image-preview')
+                    ->label('Foto')
             ])->columns(2);
     }
 
