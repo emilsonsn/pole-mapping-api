@@ -1,5 +1,5 @@
 @if ($getRecord() && $getRecord()->photo_path)
-    <a href="{{ asset('storage/' . $getRecord()->photo_path) }}"
+    <a href="{{ $getRecord()->photo_path }}"
        target="_blank"
        onclick="event.preventDefault(); openImageModal('{{ $getRecord()->photo_path }}')">
         <img src="{{ asset('storage/' . $getRecord()->photo_path) }}"
