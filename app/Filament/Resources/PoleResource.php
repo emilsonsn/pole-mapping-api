@@ -220,7 +220,7 @@ class PoleResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->defaultSort('created_at', 'desc')
-->headerActions([
+            ->headerActions([
                 Action::make('export_csv')
                     ->label('Exportar CSV (My Maps)')
                     ->icon('heroicon-o-arrow-down-tray')
