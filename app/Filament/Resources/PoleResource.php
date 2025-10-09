@@ -72,12 +72,6 @@ class PoleResource extends Resource
                     ->searchable()
                     ->required(),
 
-                Forms\Components\TextInput::make('height')
-                    ->label('Altura (m)')
-                    ->numeric()
-                    ->step('0.01')
-                    ->required(),
-
                 Forms\Components\TextInput::make('remote_management_relay')
                     ->label('Relê telegestão')
                     ->maxLength(255),
@@ -91,6 +85,36 @@ class PoleResource extends Resource
                 Forms\Components\Select::make('position_id')
                     ->label('Posição')
                     ->relationship('position', 'name')
+                    ->searchable()
+                    ->required(),
+
+                Forms\Components\Select::make('characteristic_id')
+                    ->label('Características')
+                    ->relationship('characteristic', 'name')
+                    ->searchable()
+                    ->required(),
+
+                Forms\Components\Select::make('arm_id')
+                    ->label('Tipo de Braço')
+                    ->relationship('arm', 'name')
+                    ->searchable()
+                    ->required(),
+
+                Forms\Components\Select::make('lamp_id')
+                    ->label('Tipo de Lâmpada')
+                    ->relationship('lamp', 'name')
+                    ->searchable()
+                    ->required(),
+
+                Forms\Components\Select::make('power_id')
+                    ->label('Potência')
+                    ->relationship('power', 'name')
+                    ->searchable()
+                    ->required(),
+
+                Forms\Components\Select::make('reactor_id')
+                    ->label('Reator')
+                    ->relationship('reactor', 'name')
                     ->searchable()
                     ->required(),
 
@@ -159,10 +183,6 @@ class PoleResource extends Resource
                     ->sortable()
                     ->searchable(),
 
-                Tables\Columns\TextColumn::make('height')
-                    ->label('Altura (m)')
-                    ->sortable(),
-
                 Tables\Columns\TextColumn::make('remote_management_relay')
                     ->label('Relê telegestão')
                     ->searchable(),
@@ -174,6 +194,31 @@ class PoleResource extends Resource
 
                 Tables\Columns\TextColumn::make('position.name')
                     ->label('Posição')
+                    ->sortable()
+                    ->searchable(),
+
+                Tables\Columns\TextColumn::make('characteristic.name')
+                    ->label('Características')
+                    ->sortable()
+                    ->searchable(),
+
+                Tables\Columns\TextColumn::make('arm.name')
+                    ->label('Tipo de Braço')
+                    ->sortable()
+                    ->searchable(),
+
+                Tables\Columns\TextColumn::make('lamp.name')
+                    ->label('Tipo de Lâmpada')
+                    ->sortable()
+                    ->searchable(),
+
+                Tables\Columns\TextColumn::make('power.name')
+                    ->label('Potência')
+                    ->sortable()
+                    ->searchable(),
+
+                Tables\Columns\TextColumn::make('reactor.name')
+                    ->label('Reator')
                     ->sortable()
                     ->searchable(),
 

@@ -30,7 +30,6 @@ class PoleRequest extends FormRequest
             'neighborhood' => 'required|string',
             'city' => 'required|string',
             'type_id' => 'required|exists:types,id',
-            'height' => 'required|numeric',
             'remote_management_relay' => 'nullable|string',
             'paving_id' => 'required|exists:pavings,id',
             'position_id' => 'required|exists:positions,id',
@@ -40,6 +39,11 @@ class PoleRequest extends FormRequest
             'access_id' => 'required|exists:accesses,id',
             'luminaire_quantity' => 'required|integer',
             'qrcode' => 'required|string|unique:poles,qrcode,' . $poleId,
+            'characteristic_id' => 'required|exists:characteristics,id',
+            'arm_id' => 'required|exists:arms,id',
+            'lamp_id' => 'required|exists:lamps,id',
+            'power_id' => 'required|exists:powers,id',
+            'reactor_id' => 'required|exists:reactors,id',            
         ];
     }
 }

@@ -42,5 +42,26 @@ class PoleAuxiliarySeeder extends Seeder
         // Accesses
         Access::updateOrCreate(['value' => 'Acesso 1'], ['name' => 'Acesso 1']);
         Access::updateOrCreate(['value' => 'Acesso 2'], ['name' => 'Acesso 2']);
+        
+        // Characteristics
+        \App\Models\Characteristic::updateOrCreate(['value' => 'Circular'], ['name' => 'Circular']);
+        \App\Models\Characteristic::updateOrCreate(['value' => 'Quadrado'], ['name' => 'Quadrado']);
+
+        // Arms
+        \App\Models\Arm::updateOrCreate(['value' => 'Braço reto'], ['name' => 'Braço reto']);
+        \App\Models\Arm::updateOrCreate(['value' => 'Braço curvo'], ['name' => 'Braço curvo']);
+
+        // Lamps
+        \App\Models\Lamp::updateOrCreate(['value' => 'LED'], ['name' => 'LED']);
+        \App\Models\Lamp::updateOrCreate(['value' => 'Vapor de Sódio'], ['name' => 'Vapor de Sódio']);
+
+        // Powers
+        \App\Models\Power::updateOrCreate(['value' => '50W'], ['name' => '50W']);
+        \App\Models\Power::updateOrCreate(['value' => '100W'], ['name' => '100W']);
+        \App\Models\Power::updateOrCreate(['value' => '150W'], ['name' => '150W']);
+
+        // Reactors
+        \App\Models\Reactor::updateOrCreate(['value' => 'Com reator'], ['name' => 'Com reator']);
+        \App\Models\Reactor::updateOrCreate(['value' => 'Sem reator'], ['name' => 'Sem reator']);
     }
 }

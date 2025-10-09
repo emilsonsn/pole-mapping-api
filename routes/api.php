@@ -122,6 +122,66 @@ Route::middleware(['jwt'])->group(function () {
     });
 
     /**
+     * CHARACTERISTICS
+     */
+    Route::prefix('characteristics')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Api\CharacteristicController::class, 'index'])->name('characteristics.index');
+        Route::post('/', [\App\Http\Controllers\Api\CharacteristicController::class, 'store'])->name('characteristics.store');
+        Route::get('/{characteristic}', [\App\Http\Controllers\Api\CharacteristicController::class, 'show'])->name('characteristics.show');
+        Route::put('/{characteristic}', [\App\Http\Controllers\Api\CharacteristicController::class, 'update'])->name('characteristics.update');
+        Route::patch('/{characteristic}', [\App\Http\Controllers\Api\CharacteristicController::class, 'update']);
+        Route::delete('/{characteristic}', [\App\Http\Controllers\Api\CharacteristicController::class, 'destroy'])->name('characteristics.destroy');
+    });
+
+    /**
+     * ARMS
+     */
+    Route::prefix('arms')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Api\ArmController::class, 'index'])->name('arms.index');
+        Route::post('/', [\App\Http\Controllers\Api\ArmController::class, 'store'])->name('arms.store');
+        Route::get('/{arm}', [\App\Http\Controllers\Api\ArmController::class, 'show'])->name('arms.show');
+        Route::put('/{arm}', [\App\Http\Controllers\Api\ArmController::class, 'update'])->name('arms.update');
+        Route::patch('/{arm}', [\App\Http\Controllers\Api\ArmController::class, 'update']);
+        Route::delete('/{arm}', [\App\Http\Controllers\Api\ArmController::class, 'destroy'])->name('arms.destroy');
+    });
+
+    /**
+     * LAMPS
+     */
+    Route::prefix('lamps')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Api\LampController::class, 'index'])->name('lamps.index');
+        Route::post('/', [\App\Http\Controllers\Api\LampController::class, 'store'])->name('lamps.store');
+        Route::get('/{lamp}', [\App\Http\Controllers\Api\LampController::class, 'show'])->name('lamps.show');
+        Route::put('/{lamp}', [\App\Http\Controllers\Api\LampController::class, 'update'])->name('lamps.update');
+        Route::patch('/{lamp}', [\App\Http\Controllers\Api\LampController::class, 'update']);
+        Route::delete('/{lamp}', [\App\Http\Controllers\Api\LampController::class, 'destroy'])->name('lamps.destroy');
+    });
+
+    /**
+     * POWERS
+     */
+    Route::prefix('powers')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Api\PowerController::class, 'index'])->name('powers.index');
+        Route::post('/', [\App\Http\Controllers\Api\PowerController::class, 'store'])->name('powers.store');
+        Route::get('/{power}', [\App\Http\Controllers\Api\PowerController::class, 'show'])->name('powers.show');
+        Route::put('/{power}', [\App\Http\Controllers\Api\PowerController::class, 'update'])->name('powers.update');
+        Route::patch('/{power}', [\App\Http\Controllers\Api\PowerController::class, 'update']);
+        Route::delete('/{power}', [\App\Http\Controllers\Api\PowerController::class, 'destroy'])->name('powers.destroy');
+    });
+
+    /**
+     * REACTORS
+     */
+    Route::prefix('reactors')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Api\ReactorController::class, 'index'])->name('reactors.index');
+        Route::post('/', [\App\Http\Controllers\Api\ReactorController::class, 'store'])->name('reactors.store');
+        Route::get('/{reactor}', [\App\Http\Controllers\Api\ReactorController::class, 'show'])->name('reactors.show');
+        Route::put('/{reactor}', [\App\Http\Controllers\Api\ReactorController::class, 'update'])->name('reactors.update');
+        Route::patch('/{reactor}', [\App\Http\Controllers\Api\ReactorController::class, 'update']);
+        Route::delete('/{reactor}', [\App\Http\Controllers\Api\ReactorController::class, 'destroy'])->name('reactors.destroy');
+    });
+
+    /**
      * POLES
      * (rota fixa /by-qrcode antes de /{pole})
      */

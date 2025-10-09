@@ -20,7 +20,6 @@ class Pole extends Model
         'neighborhood',
         'city',
         'type_id',
-        'height',
         'remote_management_relay',
         'paving_id',
         'position_id',
@@ -30,6 +29,11 @@ class Pole extends Model
         'access_id',
         'luminaire_quantity',
         'qrcode',
+        'characteristic_id',
+        'arm_id',
+        'lamp_id',
+        'power_id',
+        'reactor_id',
     ];
 
     public function user(): BelongsTo
@@ -70,5 +74,31 @@ class Pole extends Model
     public function access(): BelongsTo
     {
         return $this->belongsTo(Access::class);
+    }
+
+    // Novos relacionamentos
+    public function characteristic(): BelongsTo
+    {
+        return $this->belongsTo(Characteristic::class);
+    }
+
+    public function arm(): BelongsTo
+    {
+        return $this->belongsTo(Arm::class);
+    }
+
+    public function lamp(): BelongsTo
+    {
+        return $this->belongsTo(Lamp::class);
+    }
+
+    public function power(): BelongsTo
+    {
+        return $this->belongsTo(Power::class);
+    }
+
+    public function reactor(): BelongsTo
+    {
+        return $this->belongsTo(Reactor::class);
     }
 }
