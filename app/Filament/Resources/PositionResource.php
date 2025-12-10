@@ -3,18 +3,18 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PositionResource\Pages;
-use App\Filament\Resources\PositionResource\RelationManagers;
 use App\Models\Position;
+use App\Traits\CompanyPolicy;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PositionResource extends Resource
 {
+    use CompanyPolicy;
+
     protected static ?string $model = Position::class;
     protected static ?string $label = 'Posição';
 

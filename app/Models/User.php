@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\UserTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -22,7 +23,26 @@ class User extends Authenticatable implements JWTSubject
         'username',
         'email',
         'password',
+        'type',
+        'holder_id',
+        'holder_type',
     ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+        'type' => UserTypeEnum::class
+    ];
+
+    public function holder()
+    {
+        return $this->morphTo();
+    }
 
     /**
      * getJWTIdentifier
@@ -53,15 +73,5 @@ class User extends Authenticatable implements JWTSubject
         'password',
         'remember_token',
         'email_verified_at'
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
     ];
 }

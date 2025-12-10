@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\TransformerResource\Pages;
 use App\Filament\Resources\TransformerResource\RelationManagers;
 use App\Models\Transformer;
+use App\Traits\CompanyPolicy;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -15,6 +16,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class TransformerResource extends Resource
 {
+    use CompanyPolicy;
+
     protected static ?string $model = Transformer::class;
 
     protected static ?string $label = 'Transformador';

@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\NetworkTypeResource\Pages;
 use App\Filament\Resources\NetworkTypeResource\RelationManagers;
 use App\Models\NetworkType;
+use App\Traits\CompanyPolicy;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -15,6 +16,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class NetworkTypeResource extends Resource
 {
+    use CompanyPolicy;
+    
     protected static ?string $model = NetworkType::class;
 
     protected static ?string $label = 'Tipo de rede';

@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\CharacteristicResource\Pages;
 use App\Models\Characteristic;
+use App\Traits\CompanyPolicy;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,6 +13,8 @@ use Filament\Tables\Table;
 
 class CharacteristicResource extends Resource
 {
+    use CompanyPolicy;
+
     protected static ?string $model = Characteristic::class;
 
     protected static ?string $label = 'Característica';

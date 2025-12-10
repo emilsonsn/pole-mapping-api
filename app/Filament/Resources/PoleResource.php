@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PoleResource\Pages;
 use App\Filament\Resources\PoleResource\RelationManagers;
 use App\Models\Pole;
+use App\Traits\CompanyPolicy;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -14,6 +15,8 @@ use Filament\Tables\Actions\Action;
 
 class PoleResource extends Resource
 {
+    use CompanyPolicy;
+
     protected static ?string $model = Pole::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';

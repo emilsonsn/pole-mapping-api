@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\MaintenanceResource\Pages;
 use App\Models\Maintenance;
+use App\Traits\CompanyPolicy;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -15,6 +16,8 @@ use Illuminate\Support\Str;
 
 class MaintenanceResource extends Resource
 {
+    use CompanyPolicy;
+
     protected static ?string $model = Maintenance::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-wrench-screwdriver';

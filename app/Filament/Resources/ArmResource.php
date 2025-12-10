@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ArmResource\Pages;
 use App\Models\Arm;
+use App\Traits\CompanyPolicy;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,6 +13,8 @@ use Filament\Tables\Table;
 
 class ArmResource extends Resource
 {
+    use CompanyPolicy;
+
     protected static ?string $model = Arm::class;
 
     protected static ?string $label = 'Braço';
