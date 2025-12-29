@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\UserTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -24,8 +25,7 @@ class User extends Authenticatable implements JWTSubject
         'email',
         'password',
         'type',
-        'holder_id',
-        'holder_type',
+        'municipality_id',
     ];
 
     /**
@@ -39,9 +39,9 @@ class User extends Authenticatable implements JWTSubject
         'type' => UserTypeEnum::class
     ];
 
-    public function holder()
+    public function municipality(): BelongsTo
     {
-        return $this->morphTo();
+        return $this->belongsTo(Municipality::class);
     }
 
     /**

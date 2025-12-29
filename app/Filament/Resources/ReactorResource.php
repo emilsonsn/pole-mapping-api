@@ -4,7 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ReactorResource\Pages;
 use App\Models\Reactor;
-use App\Traits\CompanyPolicy;
+use App\Traits\AdminPolicy;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,7 +13,7 @@ use Filament\Tables\Table;
 
 class ReactorResource extends Resource
 {
-    use CompanyPolicy;
+    use AdminPolicy;
 
     protected static ?string $model = Reactor::class;
 

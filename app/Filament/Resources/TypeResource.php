@@ -4,7 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\TypeResource\Pages;
 use App\Models\Type;
-use App\Traits\CompanyPolicy;
+use App\Traits\AdminPolicy;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,7 +13,7 @@ use Filament\Tables\Table;
 
 class TypeResource extends Resource
 {
-    use CompanyPolicy;
+    use AdminPolicy;
 
     protected static ?string $model = Type::class;
     protected static ?string $label = 'Tipo';

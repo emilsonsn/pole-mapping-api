@@ -15,6 +15,9 @@ class Maintenance extends Model
 {
     use HasFactory;
 
+    const STATUS_PENDING = 'PENDING';
+    const STATUS_FINISHED = 'FINISHED';
+
     protected $fillable = [
         'user_id',
         'latitude',
@@ -23,9 +26,12 @@ class Maintenance extends Model
         'neighborhood',
         'city',
         'photo_path',
+        'conclusion_photo_path',
+        'status',
+        'description',
         'pole_id'
     ];
-
+    
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -59,4 +65,28 @@ class Maintenance extends Model
 
         return null;
     }
+
+    public function getConclusionPhotoPathAttribute($value): ?string
+    {
+        if (! $value) {
+            return null;
+        }
+
+        $storagePath = storage_path('app/public/' . $value);
+        $publicPath  = base_path('public_html/storage/' . $value);
+
+        if (file_exists($storagePath)) {
+            if (! file_exists(dirname($publicPath))) {
+                mkdir(dirname($publicPath), 0755, true);
+            }
+
+            if (! file_exists($publicPath)) {
+                copy($storagePath, $publicPath);
+            }
+
+            return asset('storage/' . $value);
+        }
+
+        return null;
+    }    
 }

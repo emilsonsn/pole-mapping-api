@@ -4,7 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\LampResource\Pages;
 use App\Models\Lamp;
-use App\Traits\CompanyPolicy;
+use App\Traits\AdminPolicy;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,7 +13,7 @@ use Filament\Tables\Table;
 
 class LampResource extends Resource
 {
-    use CompanyPolicy;
+    use AdminPolicy;
     
     protected static ?string $model = Lamp::class;
 

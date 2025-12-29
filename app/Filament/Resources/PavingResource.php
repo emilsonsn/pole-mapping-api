@@ -5,7 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PavingResource\Pages;
 use App\Filament\Resources\PavingResource\RelationManagers;
 use App\Models\Paving;
-use App\Traits\CompanyPolicy;
+use App\Traits\AdminPolicy;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PavingResource extends Resource
 {
-    use CompanyPolicy;
+    use AdminPolicy;
 
     protected static ?string $model = Paving::class;
     protected static ?string $label = 'Pavimentação';

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pole extends Model
@@ -12,15 +13,18 @@ class Pole extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $appends = ['remote_management_relay_image'];
+
     protected $fillable = [
         'user_id',
+        'municipality_id',
         'latitude',
         'longitude',
         'address',
         'neighborhood',
         'city',
         'type_id',
-        'remote_management_relay',
+        'remote_management_relay_path',
         'paving_id',
         'position_id',
         'network_type_id',
@@ -35,6 +39,37 @@ class Pole extends Model
         'power_id',
         'reactor_id',
     ];
+
+    public function municipality(): BelongsTo
+    {
+        return $this->belongsTo(Municipality::class);
+    }
+
+    public function getRemoteManagementRelayImageAttribute(): ?string
+    {
+        $value = $this->attributes['remote_management_relay_path'] ?? null;
+
+        if (! $value) {
+            return null;
+        }
+
+        $storagePath = storage_path('app/public/' . $value);
+        $publicPath  = base_path('public_html/storage/' . $value);
+
+        if (file_exists($storagePath)) {
+            if (! file_exists(dirname($publicPath))) {
+                mkdir(dirname($publicPath), 0755, true);
+            }
+
+            if (! file_exists($publicPath)) {
+                copy($storagePath, $publicPath);
+            }
+
+            return asset('storage/' . $value);
+        }
+
+        return null;
+    }
 
     public function user(): BelongsTo
     {
@@ -101,4 +136,10 @@ class Pole extends Model
     {
         return $this->belongsTo(Reactor::class);
     }
+
+    public function maintenances(): HasMany
+    {
+        return $this->hasMany(Maintenance::class);
+    }
 }
+

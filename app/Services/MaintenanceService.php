@@ -41,7 +41,20 @@ class MaintenanceService
 
     public function update(array $data): self
     {
+        if (isset($data['conclusion_photo']) && $data['conclusion_photo'] instanceof \Illuminate\Http\UploadedFile) {
+            $path = $data['conclusion_photo']->store('maintenances', 'public'); 
+            $absolutePath = storage_path('app/public/' . $path);
+
+            $this->addFooterToImage($absolutePath, $data);
+
+            $data['conclusion_photo_path'] = $path;
+            $data['status'] = Maintenance::STATUS_FINISHED;
+            
+            unset($data['conclusion_photo']);
+        }
+
         $this->maintenance->update($data);
+
         return $this;
     }
 

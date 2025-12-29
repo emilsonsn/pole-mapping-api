@@ -5,7 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ConnectionTypeResource\Pages;
 use App\Filament\Resources\ConnectionTypeResource\RelationManagers;
 use App\Models\ConnectionType;
-use App\Traits\CompanyPolicy;
+use App\Traits\AdminPolicy;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ConnectionTypeResource extends Resource
 {
-    use CompanyPolicy;
+    use AdminPolicy;
 
     protected static ?string $model = ConnectionType::class;
     protected static ?string $label = 'Tipo de conexão';

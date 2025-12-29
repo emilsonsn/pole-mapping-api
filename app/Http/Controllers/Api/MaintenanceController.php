@@ -84,13 +84,12 @@ class MaintenanceController extends Controller
 
     public function show(Maintenance $maintenance): JsonResponse
     {
-        $this->authorizeAccess($maintenance);
         return response()->json($maintenance);
     }
 
     public function update(MaintenanceRequest $request, Maintenance $maintenance): JsonResponse
     {
-        $this->authorizeAccess($maintenance);
+        Log::info($request->all());
 
         $updated = $this->service
             ->setMaintenance($maintenance)
@@ -102,14 +101,7 @@ class MaintenanceController extends Controller
 
     public function destroy(Maintenance $maintenance): JsonResponse
     {
-        $this->authorizeAccess($maintenance);
-
         $this->service->delete($maintenance);
         return response()->json(null, 204);
-    }
-
-    private function authorizeAccess(Maintenance $maintenance): void
-    {
-        abort_if($maintenance->user_id !== auth()->id(), 403, 'Unauthorized');
     }
 }

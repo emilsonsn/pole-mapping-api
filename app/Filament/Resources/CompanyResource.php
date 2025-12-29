@@ -45,6 +45,15 @@ class CompanyResource extends Resource
             Forms\Components\TextInput::make('website')
                 ->label('Website'),
 
+            Forms\Components\Select::make('service_mode')
+                ->label('Modo de Serviço')
+                ->options([
+                    'REGISTER' => 'Cadastro',
+                    'MAINTENANCE' => 'Manutenção',
+                    'REGISTER_MAINTENANCE' => 'Cadastro e Manutenção',
+                ])
+                ->required(),
+
             Forms\Components\Section::make('Endereço')
                 ->schema([
                     Forms\Components\TextInput::make('address')->label('Logradouro'),
@@ -72,6 +81,11 @@ class CompanyResource extends Resource
 
             Tables\Columns\TextColumn::make('email')
                 ->label('Email'),
+                
+            Tables\Columns\TextColumn::make('service_mode')
+                ->label('Modo de Serviço')
+                ->sortable(),
+
         ])
         ->actions([
             Tables\Actions\EditAction::make(),

@@ -30,7 +30,7 @@ class PoleRequest extends FormRequest
             'neighborhood' => 'required|string',
             'city' => 'required|string',
             'type_id' => 'required|exists:types,id',
-            'remote_management_relay' => 'nullable|string',
+            'remote_management_relay' => ['required','image','mimes:jpg,jpeg,png','max:5120'],
             'paving_id' => 'required|exists:pavings,id',
             'position_id' => 'required|exists:positions,id',
             'network_type_id' => 'required|exists:network_types,id',

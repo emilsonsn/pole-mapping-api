@@ -98,7 +98,7 @@ class PoleResource extends Resource
                     ->required(),
 
                 Forms\Components\Select::make('arm_id')
-                    ->label('Tipo de Braço')
+                    ->label('Tipo de Braço/Suporte')
                     ->relationship('arm', 'name')
                     ->searchable()
                     ->required(),
@@ -206,7 +206,7 @@ class PoleResource extends Resource
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('arm.name')
-                    ->label('Tipo de Braço')
+                    ->label('Tipo de Braço/Suporte')
                     ->sortable()
                     ->searchable(),
 

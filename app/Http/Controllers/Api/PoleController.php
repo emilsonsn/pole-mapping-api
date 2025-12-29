@@ -16,26 +16,25 @@ class PoleController extends Controller
 
     public function index(Request $request): JsonResponse
     {
-        $poles = Pole::query();
-
         $qrcode = $request->qrcode;
 
-        if($qrcode){
-            $pole = $poles->where('qrcode', $qrcode)
+        if ($qrcode) {
+            $pole = Pole::where('qrcode', $qrcode)
+                ->with(['maintenances' => function($query){
+                    $query->where('status', 'PENDING');
+                }])
                 ->first();
 
-            Log::info('teste');
-            Log::info($pole);
-
             return response()->json($pole);
-        }else{
-            Log::info('não tinha nadaaa');
         }
-        
-        $poles->get();
+
+        $poles = Pole::with(['maintenances' => function($query){
+            $query->where('status', 'PENDING');
+        }])->get();
 
         return response()->json($poles);
     }
+
 
     public function store(PoleRequest $request): JsonResponse
     {

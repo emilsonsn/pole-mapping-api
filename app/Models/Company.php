@@ -27,6 +27,7 @@ class Company extends Model
         'address_state',
         'address_zipcode',
         'municipality_id',
+        'service_mode'
     ];
 
     public function municipality()

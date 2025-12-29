@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Pole;
+use Illuminate\Http\UploadedFile;
 
 class PoleService
 {
@@ -30,7 +31,15 @@ class PoleService
     public function create(array $data): self
     {
         $data['user_id'] = auth()->id();
+        
+        if (isset($data['remote_management_relay']) && $data['remote_management_relay'] instanceof UploadedFile) {
+            $path = $data['remote_management_relay']->store('poles/remote-management', 'public');
+            unset($data['remote_management_relay']);
+            $data['remote_management_relay_path'] = $path;
+        }
+
         $this->pole = Pole::create($data);
+
         return $this;
     }
 
