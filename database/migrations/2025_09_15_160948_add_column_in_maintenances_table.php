@@ -14,7 +14,6 @@ return new class extends Migration
     {
         Schema::table('maintenances', function (Blueprint $table) {
             $table->foreignId('pole_id')
-                ->default(Pole::first()->id)
                 ->constrained('poles')
                 ->cascadeOnDelete();
         });
