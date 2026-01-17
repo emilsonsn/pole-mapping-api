@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Filament\Panel;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -38,6 +39,11 @@ class User extends Authenticatable implements JWTSubject
         'password' => 'hashed',
         'type' => UserTypeEnum::class
     ];
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return true;
+    }
 
     public function municipality(): BelongsTo
     {
