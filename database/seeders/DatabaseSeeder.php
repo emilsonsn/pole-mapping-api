@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Enums\UserTypeEnum;
 use Hash;
 use Illuminate\Database\Seeder;
 
@@ -17,6 +18,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@admin.com'],
         [
             'name' => 'Admin',
+            'type' => UserTypeEnum::Admin,
             'email' => 'admin@admin.com',
             'username' => 'admin',
             'password' => Hash::make('admin')

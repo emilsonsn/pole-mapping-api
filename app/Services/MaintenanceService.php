@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Helpers\LogHelper;
 use App\Models\Maintenance;
 use Intervention\Image\Laravel\Facades\Image;
 
@@ -36,6 +37,11 @@ class MaintenanceService
 
         $this->maintenance = Maintenance::create($data);
 
+        LogHelper::save(
+            description: 'Manutenção criada',
+            changes: $this->maintenance->getAttributes()
+        );
+
         return $this;
     }
 
@@ -55,12 +61,25 @@ class MaintenanceService
 
         $this->maintenance->update($data);
 
+        LogHelper::save(
+            description: 'Manutenção atualizada',
+            changes: $this->maintenance->getAttributes()
+        );
+
         return $this;
     }
 
     public function delete(Maintenance $maintenance): self
     {
+        $maintenanceAttributes = $maintenance->getAttributes();
+
         $maintenance->delete();
+
+        LogHelper::save(
+            description: 'Manutenção deletada',
+            changes: $maintenanceAttributes
+        );
+
         return $this;
     }
 

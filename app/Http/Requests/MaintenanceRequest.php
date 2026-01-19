@@ -28,7 +28,7 @@ class MaintenanceRequest extends FormRequest
             'neighborhood' => 'required|string',
             'city' => 'required|string',
             'photo' => ['nullable','image','mimes:jpg,jpeg,png','max:5120'],
-            'conclusion_photo' => ['nullable','image','mimes:jpg,jpeg,png','max:5120'],
+            'conclusion_photo' => ['nullable','image','mimes:jpg,jpeg,png','max:5120'],            
             'description' => ['nullable', 'string'],
             'pole_id' => 'required|integer',
         ];

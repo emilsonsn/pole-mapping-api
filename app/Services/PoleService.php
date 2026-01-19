@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Helpers\LogHelper;
 use App\Models\Pole;
 use Illuminate\Http\UploadedFile;
 
@@ -40,18 +41,37 @@ class PoleService
 
         $this->pole = Pole::create($data);
 
+        LogHelper::save(
+            description: 'Poste criado',
+            changes: $this->pole->getAttributes()
+        );
+
         return $this;
     }
 
     public function update(array $data): self
     {
         $this->pole->update($data);
+
+        LogHelper::save(
+            description: 'Poste atualizado',
+            changes: $this->pole->getAttributes()
+        );
+
         return $this;
     }
 
     public function delete(Pole $pole): self
     {
+        $poleAttributes = $pole->getAttributes();
+
         $pole->delete();
+
+        LogHelper::save(
+            description: 'Poste deletado',
+            changes: $poleAttributes
+        );
+
         return $this;
     }
 }

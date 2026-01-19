@@ -188,9 +188,8 @@ Route::middleware(['jwt'])->group(function () {
     Route::prefix('poles')->group(function () {
         Route::get('/', [PoleController::class, 'index'])->name('poles.index');
         Route::post('/', [PoleController::class, 'store'])->name('poles.store');
-        Route::get('/{pole}', [PoleController::class, 'show'])->name('poles.show');
-        Route::put('/{pole}', [PoleController::class, 'update'])->name('poles.update');
-        Route::patch('/{pole}', [PoleController::class, 'update']);
+        Route::get('/{pole}', [PoleController::class, 'show'])->name('poles.show');        
+        Route::patch('/{pole}', [PoleController::class, 'update'])->name('poles.update');
         Route::delete('/{pole}', [PoleController::class, 'destroy'])->name('poles.destroy');
     });
 
