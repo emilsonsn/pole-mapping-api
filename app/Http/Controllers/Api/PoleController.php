@@ -38,8 +38,6 @@ class PoleController extends Controller
 
     public function store(PoleRequest $request): JsonResponse
     {
-
-        dd('chega aqui');
         $pole = $this->service
             ->create($request->validated())
             ->getObject();
