@@ -17,8 +17,8 @@ class CharacteristicResource extends Resource
 
     protected static ?string $model = Characteristic::class;
 
-    protected static ?string $label = 'Característica';
-    protected static ?string $pluralLabel = 'Características';
+    protected static ?string $label = 'Diametro do braço/suporte';
+    protected static ?string $pluralLabel = 'Diametros do braço/suporte';
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-group';
     protected static ?string $navigationGroup = 'Tabelas Auxiliares';
 

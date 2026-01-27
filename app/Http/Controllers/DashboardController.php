@@ -27,14 +27,19 @@ class DashboardController extends Controller
             ->whereBetween('created_at', [$monthStart, $monthEnd])
             ->count();
 
+        $polesDay = Pole::where('user_id', $userId)
+            ->whereBetween('created_at', [$todayStart, $todayEnd])
+            ->count();
+
         $polesMonth = Pole::where('user_id', $userId)
             ->whereBetween('created_at', [$monthStart, $monthEnd])
             ->count();
 
         return response()->json([
-            'leadsToday' => $maintenancesToday,
-            'monthlyRevenue' => $maintenancesMonth,
-            'salesToday' => $polesMonth,
+            'maintenancesToday' => $maintenancesToday,
+            'maintenancesMonth' => $maintenancesMonth,
+            'polesToday' => $polesDay,
+            'polesMonth' => $polesMonth,
         ]);
     }
 }

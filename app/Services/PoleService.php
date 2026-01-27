@@ -39,6 +39,11 @@ class PoleService
             $data['remote_management_relay_path'] = $path;
         }
 
+        if (isset($data['pole_image']) && $data['pole_image'] instanceof UploadedFile) {
+            $path = $data['pole_image']->store('poles', 'public');
+            $data['pole_image'] = $path;
+        }
+
         $this->pole = Pole::create($data);
 
         LogHelper::save(
@@ -51,6 +56,17 @@ class PoleService
 
     public function update(array $data): self
     {
+        if (isset($data['remote_management_relay']) && $data['remote_management_relay'] instanceof UploadedFile) {
+            $path = $data['remote_management_relay']->store('poles/remote-management', 'public');
+            unset($data['remote_management_relay']);
+            $data['remote_management_relay_path'] = $path;
+        }
+
+        if (isset($data['pole_image']) && $data['pole_image'] instanceof UploadedFile) {
+            $path = $data['pole_image']->store('poles', 'public');
+            $data['pole_image'] = $path;
+        }
+
         $this->pole->update($data);
 
         LogHelper::save(

@@ -31,6 +31,19 @@ class PoleRequest extends FormRequest
             'city' => 'required|string',
             'type_id' => 'required|exists:types,id',
             'remote_management_relay' => ['nullable','image','mimes:jpg,jpeg,png','max:5120'],
+            'pole_relay' => 'nullable|string',
+            'pole_image' => [
+                'nullable',
+                function ($attr, $value, $fail) {
+                    if (is_string($value)) {
+                        return;
+                    }
+
+                    if (! $value instanceof \Illuminate\Http\UploadedFile) {
+                        $fail('Imagem inválida.');
+                    }
+                },
+            ],
             'paving_id' => 'required|exists:pavings,id',
             'position_id' => 'required|exists:positions,id',
             'network_type_id' => 'required|exists:network_types,id',

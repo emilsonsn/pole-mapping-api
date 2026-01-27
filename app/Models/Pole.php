@@ -13,7 +13,10 @@ class Pole extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $appends = ['remote_management_relay_image'];
+    protected $appends = [
+        'remote_management_relay_image',
+        'pole_image_url'
+    ];
 
     protected $fillable = [
         'user_id',
@@ -25,6 +28,8 @@ class Pole extends Model
         'city',
         'type_id',
         'remote_management_relay_path',
+        'pole_relay',
+        'pole_image',
         'paving_id',
         'position_id',
         'network_type_id',
@@ -70,6 +75,33 @@ class Pole extends Model
 
         return null;
     }
+
+    public function getPoleImageUrlAttribute(): ?string
+    {
+        $value = $this->attributes['pole_image'] ?? null;
+
+        if (! $value) {
+            return null;
+        }
+
+        $storagePath = storage_path('app/public/' . $value);
+        $publicPath  = base_path('public_html/storage/' . $value);
+
+        if (file_exists($storagePath)) {
+            if (! file_exists(dirname($publicPath))) {
+                mkdir(dirname($publicPath), 0755, true);
+            }
+
+            if (! file_exists($publicPath)) {
+                copy($storagePath, $publicPath);
+            }
+
+            return asset('storage/' . $value);
+        }
+
+        return null;
+    }
+
 
     public function user(): BelongsTo
     {

@@ -16,8 +16,8 @@ class TypeResource extends Resource
     use AdminPolicy;
 
     protected static ?string $model = Type::class;
-    protected static ?string $label = 'Tipo';
-    protected static ?string $pluralLabel = 'Tipos';
+    protected static ?string $label = 'Modelo de poste';
+    protected static ?string $pluralLabel = 'Modelos de poste';
     protected static ?string $navigationIcon = 'heroicon-o-tag';
     protected static ?string $navigationGroup = 'Tabelas Auxiliares';
 
