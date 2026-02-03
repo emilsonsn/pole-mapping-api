@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Type extends Model
+class Relay extends Model
 {
     use HasFactory, SyncNameValue;
 
@@ -19,5 +19,5 @@ class Type extends Model
     public function poles(): HasMany
     {
         return $this->hasMany(Pole::class);
-    }
+    }       
 }

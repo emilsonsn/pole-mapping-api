@@ -27,11 +27,11 @@ class PoleRequest extends FormRequest
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
             'address' => 'required|string',
+            'number' => 'nullable|string',
             'neighborhood' => 'required|string',
             'city' => 'required|string',
             'type_id' => 'required|exists:types,id',
             'remote_management_relay' => ['nullable','image','mimes:jpg,jpeg,png','max:5120'],
-            'pole_relay' => 'nullable|string',
             'pole_image' => [
                 'nullable',
                 function ($attr, $value, $fail) {
@@ -45,6 +45,7 @@ class PoleRequest extends FormRequest
                 },
             ],
             'paving_id' => 'required|exists:pavings,id',
+            'relay_id' => 'required|exists:relays,id',
             'position_id' => 'required|exists:positions,id',
             'network_type_id' => 'required|exists:network_types,id',
             'connection_type_id' => 'required|exists:connection_types,id',

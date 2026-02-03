@@ -24,11 +24,12 @@ class Pole extends Model
         'latitude',
         'longitude',
         'address',
+        'number',
         'neighborhood',
         'city',
         'type_id',
         'remote_management_relay_path',
-        'pole_relay',
+        'relay_id',
         'pole_image',
         'paving_id',
         'position_id',
@@ -48,6 +49,10 @@ class Pole extends Model
     public function municipality(): BelongsTo
     {
         return $this->belongsTo(Municipality::class);
+    }
+
+    public function relay(){
+        return $this->belongsTo(Relay::class);
     }
 
     public function getRemoteManagementRelayImageAttribute(): ?string

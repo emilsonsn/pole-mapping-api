@@ -140,6 +140,18 @@ Route::middleware(['jwt'])->group(function () {
     });
 
     /**
+     * relays
+     */
+    Route::prefix('relays')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Api\RelayController::class, 'index'])->name('relays.index');
+        Route::post('/', [\App\Http\Controllers\Api\RelayController::class, 'store'])->name('relays.store');
+        Route::get('/{relay}', [\App\Http\Controllers\Api\RelayController::class, 'show'])->name('relays.show');
+        Route::put('/{relay}', [\App\Http\Controllers\Api\RelayController::class, 'update'])->name('relays.update');
+        Route::patch('/{relay}', [\App\Http\Controllers\Api\RelayController::class, 'update']);
+        Route::delete('/{relay}', [\App\Http\Controllers\Api\RelayController::class, 'destroy'])->name('relays.destroy');
+    });    
+
+    /**
      * ARMS
      */
     Route::prefix('arms')->group(function () {

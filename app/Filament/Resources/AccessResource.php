@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\AccessResource\Pages;
+
 use App\Models\Access;
 use App\Traits\AdminPolicy;
 use Filament\Forms;
@@ -27,10 +28,6 @@ class AccessResource extends Resource
         return $form->schema([
             Forms\Components\TextInput::make('name')
                 ->label('Nome')
-                ->required()
-                ->maxLength(255),
-            Forms\Components\TextInput::make('value')
-                ->label('Valor')
                 ->required()
                 ->maxLength(255),
         ]);

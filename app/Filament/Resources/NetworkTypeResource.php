@@ -6,6 +6,7 @@ use App\Filament\Resources\NetworkTypeResource\Pages;
 use App\Filament\Resources\NetworkTypeResource\RelationManagers;
 use App\Models\NetworkType;
 use App\Traits\AdminPolicy;
+
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -30,10 +31,6 @@ class NetworkTypeResource extends Resource
         return $form->schema([
             Forms\Components\TextInput::make('name')
                 ->label('Nome')
-                ->required()
-                ->maxLength(255),
-            Forms\Components\TextInput::make('value')
-                ->label('Valor')
                 ->required()
                 ->maxLength(255),
         ]);

@@ -61,13 +61,43 @@ class LogResource extends Resource
                     ->dateTime()
                     ->sortable(),
             ])
+            ->filters([
+                Tables\Filters\SelectFilter::make('user_id')
+                    ->label('Usuário')
+                    ->relationship('user', 'name'),
+
+                Tables\Filters\Filter::make('description')
+                    ->form([
+                        Forms\Components\TextInput::make('description')
+                            ->label('Descrição'),
+                    ])
+                    ->query(function ($query, array $data) {
+                        return $query->when(
+                            $data['description'],
+                            fn ($q) => $q->where('description', 'like', "%{$data['description']}%")
+                        );
+                    }),
+
+                Tables\Filters\Filter::make('created_at')
+                    ->label('Data de criação')
+                    ->form([
+                        Forms\Components\DatePicker::make('from')
+                            ->label('De'),
+                        Forms\Components\DatePicker::make('until')
+                            ->label('Até'),
+                    ])
+                    ->query(function ($query, array $data) {
+                        return $query
+                            ->when($data['from'], fn ($q) => $q->whereDate('created_at', '>=', $data['from']))
+                            ->when($data['until'], fn ($q) => $q->whereDate('created_at', '<=', $data['until']));
+                    }),
+            ])
             ->defaultSort('created_at', 'desc')
             ->actions([
                 Tables\Actions\ViewAction::make()->label('Ver'),
             ])
             ->bulkActions([]);
     }
-
 
     public static function getRelations(): array
     {

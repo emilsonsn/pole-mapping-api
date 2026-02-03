@@ -6,6 +6,7 @@ use App\Filament\Resources\PavingResource\Pages;
 use App\Filament\Resources\PavingResource\RelationManagers;
 use App\Models\Paving;
 use App\Traits\AdminPolicy;
+
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -29,10 +30,6 @@ class PavingResource extends Resource
         return $form->schema([
             Forms\Components\TextInput::make('name')
                 ->label('Nome')
-                ->required()
-                ->maxLength(255),
-            Forms\Components\TextInput::make('value')
-                ->label('Valor')
                 ->required()
                 ->maxLength(255),
         ]);
