@@ -32,8 +32,9 @@ class UserResource extends Resource
         return $form->schema([
             Forms\Components\Hidden::make('holder_id'),
             Forms\Components\Hidden::make('holder_type'),
-            Forms\Components\Hidden::make('type'),
-
+            Forms\Components\Hidden::make('type')
+                ->default(UserTypeEnum::User->value)
+                ->dehydrateStateUsing(fn () => UserTypeEnum::User->value),
             Forms\Components\TextInput::make('name')->label('Nome')->required(),
             Forms\Components\TextInput::make('username')->label('Usuário')->required()->unique(ignoreRecord: true),
             Forms\Components\TextInput::make('email')->label('E-mail')->email()->required()->unique(ignoreRecord: true),
