@@ -14,16 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::updateOrCreate([
-            'email' => 'admin@admin.com'],
-        [
-            'name' => 'Admin',
-            'type' => UserTypeEnum::Admin,
-            'email' => 'admin@admin.com',
-            'username' => 'admin',
-            'password' => Hash::make('admin')
-        ]);
-
         $this->call(PoleAuxiliarySeeder::class);
+        $this->call(UserSeeder::class);
     }
 }

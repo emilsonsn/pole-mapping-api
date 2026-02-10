@@ -30,8 +30,7 @@ class UserResource extends Resource
     public static function form(Form $form): Form
     {
         return $form->schema([
-            Forms\Components\Hidden::make('holder_id'),
-            Forms\Components\Hidden::make('holder_type'),
+            Forms\Components\Hidden::make('municipality_id'),
             Forms\Components\Hidden::make('type')
                 ->default(UserTypeEnum::User->value)
                 ->dehydrateStateUsing(fn () => UserTypeEnum::User->value),
@@ -50,12 +49,12 @@ class UserResource extends Resource
     {
         return $table
             ->modifyQueryUsing(function ($query) {
-                $company = auth()->user()->holder;
+                $municipality = auth()->user()->municipality;
 
                 return $query->where('type', UserTypeEnum::User->value)
-                    ->when($company !== null, function ($query) use ($company) {
-                    return $query->where('holder_id', $company->id)
-                                ->where('holder_type', get_class($company));
+                    ->when($municipality !== null, function ($query) use ($municipality) {
+                    return $query->where('municipality_id', $municipality->id);
+
                 });
             })
             ->columns([
