@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\UserTypeEnum;
 use App\Filament\Resources\UserResource\Pages;
 use App\Models\User;
 use App\Traits\CompanyPolicy;
@@ -50,8 +51,11 @@ class UserResource extends Resource
             ->modifyQueryUsing(function ($query) {
                 $company = auth()->user()->holder;
 
-                return $query->where('holder_id', $company->id)
-                            ->where('holder_type', get_class($company));
+                return $query->where('type', UserTypeEnum::User->value)
+                    ->when($company !== null, function ($query) use ($company) {
+                    return $query->where('holder_id', $company->id)
+                                ->where('holder_type', get_class($company));
+                });
             })
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
