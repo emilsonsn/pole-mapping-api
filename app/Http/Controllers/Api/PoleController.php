@@ -28,13 +28,27 @@ class PoleController extends Controller
             return response()->json($pole);
         }
 
-        $poles = Pole::with(['maintenances' => function($query){
-            $query->where('status', 'PENDING');
-        }])->get();
+        $poles = Pole::with([
+            'type',
+            'paving',
+            'position',
+            'networkType',
+            'connectionType',
+            'transformer',
+            'access',
+            'characteristic',
+            'arm',
+            'lamp',
+            'power',
+            'reactor',
+            'relay',
+            'maintenances' => function($query){
+                $query->where('status', 'PENDING');
+            }
+        ])->get();
 
         return response()->json($poles);
     }
-
 
     public function store(PoleRequest $request): JsonResponse
     {
