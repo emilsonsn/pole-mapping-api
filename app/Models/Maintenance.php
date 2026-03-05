@@ -28,7 +28,8 @@ class Maintenance extends Model
         'photo_path',
         'conclusion_photo_path',
         'status',
-        'description',
+        'initial_description',
+        'final_description',
         'pole_id'
     ];
     
