@@ -35,6 +35,8 @@ class MaintenanceService
             unset($data['photo']);
         }
 
+        $data = array_filter($data);
+
         $this->maintenance = Maintenance::create($data);
 
         LogHelper::save(
@@ -61,7 +63,7 @@ class MaintenanceService
 
         $data = array_filter($data);
 
-        $this->maintenance->update($data    );
+        $this->maintenance->update($data);
 
         LogHelper::save(
             description: 'Manutenção atualizada',
