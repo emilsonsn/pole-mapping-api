@@ -57,7 +57,7 @@ class MaintenanceController extends Controller
                     Carbon::parse($end)->endOfDay(),
                 ]);
             })
-            ->with('poles')
+            ->with('pole')
             ->orderBy($orderField, $orderDir);
 
         $p = $query->paginate($take, ['*'], 'page', $page);
